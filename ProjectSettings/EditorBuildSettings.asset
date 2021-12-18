@@ -6,8 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+<<<<<<< HEAD
     path: Assets/Scenes/XRPreset/StringPuppet-Scene1.unity
     guid: ed3351fffc1378a439ef0b65cef285bb
+=======
+    path: Assets/StringDigitalPuppet/StringPuppet-LowBuncy.unity
+    guid: 2be4d6a180a0b6c4d9842fe1c0899d41
+>>>>>>> b33344d9cf76852bb15a8956c4124ce3e2fadc25
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 6532593eebdce224e9f1b56bea949791, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 385d7feb92c551541b2fbee3a2a7dd1c, type: 2}
