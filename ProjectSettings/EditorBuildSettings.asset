@@ -4,5 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
-  m_configObjects: {}
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Katja/Scenes_NewPuppet/StringPuppet-Controller.unity
+    guid: 13b60eaf57d1b4049a5eb070a2265c8c
+  m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 6532593eebdce224e9f1b56bea949791, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 385d7feb92c551541b2fbee3a2a7dd1c, type: 2}
