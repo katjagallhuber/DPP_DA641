@@ -6,27 +6,40 @@ using TMPro;
 public class HitPointsController : MonoBehaviour
 {
     private int currentHitPoints;
-    public TextMeshProUGUI hitPointsUI;
+    //public TextMeshProUGUI hitPointsUI;
     public TextMeshProUGUI hitObjectTextUI;
 
     private void Start()
     {
         currentHitPoints = 0;
+        hitObjectTextUI.text = "Hitpoints: 0";
         TriggerHitPoints.OnTouchedObstacle += IncreaseHitPoints;
+        SceneCleanUp.OnTriggeredScene += ResetCurrentHitPoints;
     }
 
     /// <summary>
-    /// If the OnTouchedObstacle event gets called, this function is executed once. The overall hit points increase and the UI text is updated
+    /// If the OnTouchedObstacle event gets called, this function is executed once. Depending on bool IsAdded, the overall hit points increase or decrease and UI text is updated
     /// </summary>
     /// <param name="hitPoints"></param>
-    private void IncreaseHitPoints(int hitPoints, GameObject hitGameObject)
+    private void IncreaseHitPoints(int hitPoints, GameObject hitGameObject, bool IsAdded)
     {
-        Debug.Log("added " + hitPoints + " points!");
-        currentHitPoints += hitPoints;
+        if (IsAdded)
+        {
+            currentHitPoints += hitPoints;
+            hitObjectTextUI.text = "Perfect! You hit the object " + hitGameObject.name + ". Hitpoints: " + currentHitPoints.ToString();
+        } 
+        else
+        {
+            currentHitPoints -= hitPoints;
+            hitObjectTextUI.text = "Oh no! You hit the object " + hitGameObject.name + ". Hitpoints: " + currentHitPoints.ToString();
+        }
 
-        hitPointsUI.text = currentHitPoints.ToString();
-        hitObjectTextUI.text = "Oh no! You hit the object " + hitGameObject.name;
+        //hitPointsUI.text = currentHitPoints.ToString();
     }
 
-    
+    private void ResetCurrentHitPoints()
+    {
+        currentHitPoints = 0;
+        hitObjectTextUI.text = "Hitpoints: " + currentHitPoints.ToString();
+    }
 }
