@@ -136,7 +136,6 @@ GameObject:
   - component: {fileID: 4031116901669565966}
   - component: {fileID: 1146046312255822357}
   - component: {fileID: 8989958707108790592}
-  - component: {fileID: 9744405879744332}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -236,21 +235,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!138 &9744405879744332
-FixedJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 56067097727027235}
-  m_ConnectedBody: {fileID: 2016534297}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
 --- !u!1 &637714840488511360
 GameObject:
   m_ObjectHideFlags: 0
