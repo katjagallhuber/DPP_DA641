@@ -6,9 +6,14 @@ using System;
 public class TriggerHitPoints : MonoBehaviour
 {
     [SerializeField] private int hitPoints;
-    [SerializeField] private bool IsAdded;
+    [SerializeField] private bool IsAdded = true;
 
-    private int puppetLayer = 10;
+    private int plantsLayer = 9;
+    private int animalLayer = 8;
+    private int puppetArmsLayer = 6;
+    private int puppetLegsLayer = 7;
+    private int farmerLayer = 11;
+
     private List<Material> materials;
 
     public static event Action<int, GameObject, bool> OnTouchedObstacle;
@@ -18,19 +23,16 @@ public class TriggerHitPoints : MonoBehaviour
         // default value, can be changed in the inspector individually for each obstacle
         hitPoints = 10;
 
-        AddMaterialsToList();
-
-        Debug.Log(materials.Count);
+        //AddMaterialsToList();
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == puppetLayer)
         {
             ControlEmissionOnHover();
         }
-        
-    }
+    }*/
 
     /// <summary>
     /// Everytime the puppet with layer 10 touches an obstacle, the OnTouchedObstacle Event gets invoked
@@ -38,7 +40,13 @@ public class TriggerHitPoints : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == puppetLayer)
+        if (other.gameObject.layer == puppetArmsLayer && this.gameObject.layer == animalLayer)
+        {
+            OnTouchedObstacle?.Invoke(hitPoints, gameObject, IsAdded);
+        } else if (other.gameObject.layer == puppetLegsLayer && this.gameObject.layer == plantsLayer)
+        {
+            OnTouchedObstacle?.Invoke(hitPoints, gameObject, IsAdded);
+        } else if (gameObject.layer == farmerLayer)
         {
             OnTouchedObstacle?.Invoke(hitPoints, gameObject, IsAdded);
         }

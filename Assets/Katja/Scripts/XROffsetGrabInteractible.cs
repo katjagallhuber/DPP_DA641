@@ -10,12 +10,12 @@ public class XROffsetGrabInteractible : XRGrabInteractable
     private Quaternion initialAttachLocalRot;
 
     [SerializeField] Rigidbody MainCamera;
-    [SerializeField] FixedJoint headController;
+    //[SerializeField] FixedJoint headController;
 
     // Start is called before the first frame update
     void Start()
     {
-        headController.connectedBody = null;
+        //headController.connectedBody = null;
 
         // Create attach point
         if (!attachTransform)
@@ -32,7 +32,7 @@ public class XROffsetGrabInteractible : XRGrabInteractable
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
         // As soon as controllers selected for the first time, connected body is set
-        headController.connectedBody = MainCamera;
+        //headController.connectedBody = MainCamera;
 
         if (args.interactor is XRDirectInteractor)
         {

@@ -8,6 +8,7 @@ public class SceneCleanUp : MonoBehaviour
 {
     [SerializeField] private List<GameObject> scenes;
     [SerializeField] private GameObject wall;
+    [SerializeField] private Timer timer;
 
     public static event Action OnTriggeredScene;
 
@@ -15,17 +16,7 @@ public class SceneCleanUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == puppetLayer)
-        {
-            foreach (GameObject scene in scenes)
-            {
-                scene.SetActive(false);
-            }
-
-            wall.SetActive(true);
-
-            OnTriggeredScene?.Invoke();
-        }  
+        OnTriggeredScene?.Invoke();
     }
 
     private void OnTriggerExit(Collider other)
@@ -34,5 +25,23 @@ public class SceneCleanUp : MonoBehaviour
         {
             collider.enabled = false;
         }
+
+        StartCoroutine(EnableTimer()); 
     }
+
+    IEnumerator EnableTimer()
+    {
+        timer.enabled = true;
+
+        yield return new WaitForSeconds(1);
+
+        foreach (GameObject scene in scenes)
+        {
+            scene.SetActive(false);
+        }
+
+        wall.SetActive(true);
+
+    }
+
 }

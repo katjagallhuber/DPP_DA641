@@ -15,6 +15,7 @@ public class HitPointsController : MonoBehaviour
         hitObjectTextUI.text = "Hitpoints: 0";
         TriggerHitPoints.OnTouchedObstacle += IncreaseHitPoints;
         SceneCleanUp.OnTriggeredScene += ResetCurrentHitPoints;
+        Timer.OnTimerEnded += EndGame;
     }
 
     /// <summary>
@@ -26,12 +27,12 @@ public class HitPointsController : MonoBehaviour
         if (IsAdded)
         {
             currentHitPoints += hitPoints;
-            hitObjectTextUI.text = "Perfect! You hit the object " + hitGameObject.name + ". Hitpoints: " + currentHitPoints.ToString();
+            hitObjectTextUI.text = "Perfect! You hit the " + hitGameObject.name + ". Hitpoints: " + currentHitPoints.ToString();
         } 
         else
         {
             currentHitPoints -= hitPoints;
-            hitObjectTextUI.text = "Oh no! You hit the object " + hitGameObject.name + ". Hitpoints: " + currentHitPoints.ToString();
+            hitObjectTextUI.text = "Oh no! You hit the " + hitGameObject.name + ". Hitpoints: " + currentHitPoints.ToString();
         }
 
         //hitPointsUI.text = currentHitPoints.ToString();
@@ -41,5 +42,11 @@ public class HitPointsController : MonoBehaviour
     {
         currentHitPoints = 0;
         hitObjectTextUI.text = "Hitpoints: " + currentHitPoints.ToString();
+    }
+
+    private void EndGame()
+    {
+        TriggerHitPoints.OnTouchedObstacle -= IncreaseHitPoints;
+        hitObjectTextUI.text = "Congratulations! You finished the level and got " + currentHitPoints.ToString() + " hitpoints! You can now put off your headset.";
     }
 }
