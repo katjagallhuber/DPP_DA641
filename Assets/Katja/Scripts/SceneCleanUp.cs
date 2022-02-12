@@ -9,29 +9,42 @@ public class SceneCleanUp : MonoBehaviour
     [SerializeField] private List<GameObject> scenes;
     [SerializeField] private GameObject wall;
     [SerializeField] private Timer timer;
+    [SerializeField] private TextMeshProUGUI playerCountCanvas;
 
     public static event Action OnTriggeredScene;
 
     private int puppetLayer = 10;
 
+    private void Start()
+    {
+        playerCountCanvas.enabled = false;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        OnTriggeredScene?.Invoke();
+        if (other.gameObject.layer == puppetLayer)
+        {
+            OnTriggeredScene?.Invoke();
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (TryGetComponent(out BoxCollider collider))
+        if (other.gameObject.layer == puppetLayer)
         {
-            collider.enabled = false;
-        }
+            if (TryGetComponent(out BoxCollider collider))
+            {
+                collider.enabled = false;
+            }
 
-        StartCoroutine(EnableTimer()); 
+            StartCoroutine(EnableTimer());
+        }
     }
 
     IEnumerator EnableTimer()
     {
         timer.enabled = true;
+        playerCountCanvas.enabled = true;
 
         yield return new WaitForSeconds(1);
 
