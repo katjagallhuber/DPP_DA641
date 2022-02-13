@@ -28,14 +28,13 @@ public class HitPointsController : MonoBehaviour
         {
             currentHitPoints += hitPoints;
             hitObjectTextUI.text = "Perfect! You hit the " + hitGameObject.name + ". Hitpoints: " + currentHitPoints.ToString();
+            StartCoroutine("DespawnObject", hitGameObject);
         } 
         else
         {
             currentHitPoints -= hitPoints;
             hitObjectTextUI.text = "Oh no! You hit the " + hitGameObject.name + ". Hitpoints: " + currentHitPoints.ToString();
         }
-
-        //hitPointsUI.text = currentHitPoints.ToString();
     }
 
     private void ResetCurrentHitPoints()
@@ -48,5 +47,11 @@ public class HitPointsController : MonoBehaviour
     {
         TriggerHitPoints.OnTouchedObstacle -= IncreaseHitPoints;
         hitObjectTextUI.text = "Congratulations! You finished the level and got " + currentHitPoints.ToString() + " hitpoints! You can now put off your headset.";
+    }
+
+    private IEnumerator DespawnObject(GameObject hitObject)
+    {
+        yield return new WaitForSeconds(2f);
+        hitObject.SetActive(false);
     }
 }

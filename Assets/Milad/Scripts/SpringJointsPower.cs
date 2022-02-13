@@ -36,14 +36,7 @@ public class SpringJointsPower : MonoBehaviour
     [SerializeField]
     private SpringJoint rightFoot;
 
-
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (head != null && leftHand != null && rightHand != null && leftFoot != null && rightFoot != null)
         {

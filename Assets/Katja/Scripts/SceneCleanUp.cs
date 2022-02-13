@@ -10,6 +10,7 @@ public class SceneCleanUp : MonoBehaviour
     [SerializeField] private GameObject wall;
     [SerializeField] private Timer timer;
     [SerializeField] private TextMeshProUGUI playerCountCanvas;
+    [SerializeField] private AudioSource source;
 
     public static event Action OnTriggeredScene;
 
@@ -18,6 +19,12 @@ public class SceneCleanUp : MonoBehaviour
     private void Start()
     {
         playerCountCanvas.enabled = false;
+
+        if (TryGetComponent(out AudioSource audio))
+        {
+            source = audio;
+            source.playOnAwake = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -25,6 +32,7 @@ public class SceneCleanUp : MonoBehaviour
         if (other.gameObject.layer == puppetLayer)
         {
             OnTriggeredScene?.Invoke();
+            source.Play();
         }
     }
 

@@ -18,7 +18,7 @@ public class XROffsetGrabInteractible : XRGrabInteractable
         //headController.connectedBody = null;
 
         // Create attach point
-        if (!attachTransform)
+        /*if (!attachTransform)
         {
             GameObject grab = new GameObject("Grab Pivot");
             grab.transform.SetParent(transform, false);
@@ -26,7 +26,7 @@ public class XROffsetGrabInteractible : XRGrabInteractable
         }
 
         initialAttachLocalPos = attachTransform.localPosition;
-        initialAttachLocalRot = attachTransform.localRotation;
+        initialAttachLocalRot = attachTransform.localRotation;*/
     }
 
     protected override void OnSelectEntered(SelectEnterEventArgs args)
@@ -34,7 +34,7 @@ public class XROffsetGrabInteractible : XRGrabInteractable
         // As soon as controllers selected for the first time, connected body is set
         //headController.connectedBody = MainCamera;
 
-        if (args.interactor is XRDirectInteractor)
+        /*if (args.interactor is XRDirectInteractor)
         {
             attachTransform.position = args.interactor.transform.position;
             attachTransform.rotation = args.interactor.transform.rotation;
@@ -43,7 +43,7 @@ public class XROffsetGrabInteractible : XRGrabInteractable
         {
             attachTransform.localPosition = initialAttachLocalPos;
             attachTransform.localRotation = initialAttachLocalRot;
-        }
+        }*/
 
         base.OnSelectEntered(args);
     }

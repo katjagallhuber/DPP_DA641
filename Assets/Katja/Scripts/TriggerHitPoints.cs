@@ -16,6 +16,7 @@ public class TriggerHitPoints : MonoBehaviour
     private int puppetLayer = 10;
 
     private List<Material> materials;
+    private AudioSource source;
 
     public static event Action<int, GameObject, bool> OnTouchedObstacle;
 
@@ -23,6 +24,12 @@ public class TriggerHitPoints : MonoBehaviour
     {
         // default value, can be changed in the inspector individually for each obstacle
         hitPoints = 10;
+
+        if (TryGetComponent(out AudioSource audio))
+        {
+            source = audio;
+            source.playOnAwake = false;
+        }
 
         AddMaterialsToList();
     }
@@ -38,16 +45,22 @@ public class TriggerHitPoints : MonoBehaviour
         {
             OnTouchedObstacle?.Invoke(hitPoints, gameObject, IsAdded);
             Debug.Log("You hit an animal " + gameObject.name);
+            if (source)
+                source.Play();
         }
         else if (other.gameObject.layer == puppetLegsLayer && this.gameObject.layer == plantsLayer)
         {
             OnTouchedObstacle?.Invoke(hitPoints, gameObject, IsAdded);
             Debug.Log("You hit a plant " + gameObject.name);
+            if (source)
+                source.Play();
         }
         else if (gameObject.layer == farmerLayer && other.gameObject.layer == puppetLayer || gameObject.layer == farmerLayer && other.gameObject.layer == puppetArmsLayer || gameObject.layer == farmerLayer && other.gameObject.layer == puppetLegsLayer)
         {
             OnTouchedObstacle?.Invoke(hitPoints, gameObject, IsAdded);
             Debug.Log("You hit a farmer " + gameObject.name);
+            if (source)
+                source.Play();
         }
     }
 
