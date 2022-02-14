@@ -35,10 +35,14 @@ public class SeesawRotation : MonoBehaviour
     {
        if (temp > 0f && temp <= 90f)
        {
-            //puppetConterollerLeft.transform.localPosition = new Vector3(puppetConterollerLeft.transform.localPosition.x-1, temp / leftAngle, puppetConterollerLeft.transform.localPosition.z);
-           // puppetConterollerRight.transform.localPosition = new Vector3(puppetConterollerRight.transform.localPosition.x+1, -temp / leftAngle, puppetConterollerRight.transform.localPosition.z);
-            puppetConterollerLeft.transform.localPosition = new Vector3(puppetConterollerLeft.transform.localPosition.x, temp / leftAngle, puppetConterollerLeft.transform.localPosition.z);
-            puppetConterollerRight.transform.localPosition = new Vector3(puppetConterollerRight.transform.localPosition.x, -temp / leftAngle, puppetConterollerRight.transform.localPosition.z);
+            //puppetConterollerLeft.transform.localPosition = new Vector3(-1f, transform.localPosition.y + temp / leftAngle, puppetConterollerLeft.transform.localPosition.z);
+            //puppetConterollerRight.transform.localPosition = new Vector3(1f, transform.localPosition.y - temp / leftAngle, puppetConterollerRight.transform.localPosition.z);
+
+            puppetConterollerLeft.transform.localPosition = new Vector3(transform.localPosition.x-1f, transform.localPosition.y + temp / leftAngle, puppetConterollerLeft.transform.localPosition.z);
+            puppetConterollerRight.transform.localPosition = new Vector3(transform.localPosition.x+1f, transform.localPosition.y - temp / leftAngle, puppetConterollerRight.transform.localPosition.z);
+
+            //puppetConterollerLeft.transform.localPosition = new Vector3(puppetConterollerLeft.transform.localPosition.x, temp / leftAngle, puppetConterollerLeft.transform.localPosition.z);
+            //puppetConterollerRight.transform.localPosition = new Vector3(puppetConterollerRight.transform.localPosition.x, -temp / leftAngle, puppetConterollerRight.transform.localPosition.z);
             //Debug.Log("LeftUp");
         }
     }
@@ -47,11 +51,17 @@ public class SeesawRotation : MonoBehaviour
         if (temp >= 270f && temp <360f)
         {
           temp -= 360f;
-            //  puppetConterollerLeft.transform.localPosition = new Vector3(puppetConterollerLeft.transform.localPosition.x-1, -temp / rightAngle, puppetConterollerLeft.transform.localPosition.z);
-            //  puppetConterollerRight.transform.localPosition = new Vector3(puppetConterollerRight.transform.localPosition.x+1, temp / rightAngle, puppetConterollerRight.transform.localPosition.z);
 
-            puppetConterollerLeft.transform.localPosition = new Vector3(puppetConterollerLeft.transform.localPosition.x, -temp / rightAngle, puppetConterollerLeft.transform.localPosition.z);
-            puppetConterollerRight.transform.localPosition = new Vector3(puppetConterollerRight.transform.localPosition.x, temp / rightAngle, puppetConterollerRight.transform.localPosition.z);
+            //puppetConterollerLeft.transform.localPosition = new Vector3(-1f, transform.localPosition.y - temp / rightAngle , puppetConterollerLeft.transform.localPosition.z);
+            //puppetConterollerRight.transform.localPosition = new Vector3(1f, transform.localPosition.y +temp / rightAngle ,puppetConterollerRight.transform.localPosition.z);
+
+              puppetConterollerLeft.transform.localPosition = new Vector3(transform.localPosition.x-1f, transform.localPosition.y - temp / rightAngle, puppetConterollerLeft.transform.localPosition.z);
+              puppetConterollerRight.transform.localPosition = new Vector3(transform.localPosition.x+1f, transform.localPosition.y + temp / rightAngle, puppetConterollerRight.transform.localPosition.z);
+
+           // puppetConterollerLeft.transform.localPosition = new Vector3(puppetConterollerLeft.transform.localPosition.x, -temp / rightAngle, puppetConterollerLeft.transform.localPosition.z);
+           // puppetConterollerRight.transform.localPosition = new Vector3(puppetConterollerRight.transform.localPosition.x, temp / rightAngle, puppetConterollerRight.transform.localPosition.z);
+
+
 
             //Debug.Log("RightUp");
         }
