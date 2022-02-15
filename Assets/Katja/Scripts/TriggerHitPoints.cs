@@ -20,6 +20,10 @@ public class TriggerHitPoints : MonoBehaviour
 
     public static event Action<int, GameObject, bool> OnTouchedObstacle;
 
+    [SerializeField] private Renderer renderer;
+    [SerializeField] private Material material; 
+
+
     private void Start()
     {
         // default value, can be changed in the inspector individually for each obstacle
@@ -30,6 +34,14 @@ public class TriggerHitPoints : MonoBehaviour
             source = audio;
             source.playOnAwake = false;
         }
+
+        if (TryGetComponent(out Rigidbody rb))
+        {
+            rb.mass = 0.1f;
+        }
+
+        renderer = gameObject.GetComponentInChildren<Renderer>(); ;
+        material = renderer.material;
 
         AddMaterialsToList();
     }
@@ -44,33 +56,21 @@ public class TriggerHitPoints : MonoBehaviour
         if (other.gameObject.layer == puppetArmsLayer && this.gameObject.layer == animalLayer)
         {
             OnTouchedObstacle?.Invoke(hitPoints, gameObject, IsAdded);
-            Debug.Log("You hit an animal " + gameObject.name);
             if (source)
                 source.Play();
         }
         else if (other.gameObject.layer == puppetLegsLayer && this.gameObject.layer == plantsLayer)
         {
             OnTouchedObstacle?.Invoke(hitPoints, gameObject, IsAdded);
-            Debug.Log("You hit a plant " + gameObject.name);
             if (source)
                 source.Play();
         }
         else if (gameObject.layer == farmerLayer && other.gameObject.layer == puppetLayer || gameObject.layer == farmerLayer && other.gameObject.layer == puppetArmsLayer || gameObject.layer == farmerLayer && other.gameObject.layer == puppetLegsLayer)
         {
             OnTouchedObstacle?.Invoke(hitPoints, gameObject, IsAdded);
-            Debug.Log("You hit a farmer " + gameObject.name);
             if (source)
                 source.Play();
         }
-    }
-
-    /// <summary>
-    /// Everytime the puppet with layer 10 touches an obstacle, the OnTouchedObstacle Event gets invoked
-    /// </summary>
-    /// <param name="other"></param>
-    private void OnTriggerExit(Collider other)
-    {
-        
     }
 
     // Control the emission of the object 
@@ -90,6 +90,8 @@ public class TriggerHitPoints : MonoBehaviour
                 m.SetColor("_EmissionColor", new Color(0.5f, 0.0f, 0.0f));
                 m.SetColor("_EMISSION_COLOR", new Color(0.5f, 0.0f, 0.0f));
             }
+
+            Debug.Log(gameObject.name + " " + m.name);
         }
 
         StartCoroutine("ResetMaterials");
@@ -136,5 +138,21 @@ public class TriggerHitPoints : MonoBehaviour
                 mChild.EnableKeyword("_EMISSION");
             }
         }
+    }
+
+    private void ControlMaterial()
+    {
+        
+        if(IsAdded)
+        {
+            material.EnableKeyword("Emission");
+            material.SetColor("_EmissionColor", new Color(0.0f, 0.5f, 0.0f));
+        }
+        else
+        {
+            material.EnableKeyword("Emission");
+            material.SetColor("_EmissionColor", new Color(0.5f, 0.0f, 0.0f));
+        }
+        
     }
 }

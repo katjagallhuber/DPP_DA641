@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 // inherits from standard XRgrabinteractible and improves grabbing 
-public class XROffsetGrabInteractible : XRGrabInteractable
+public class XRGrabInteractibleCustom : XRGrabInteractable
 {
     private Vector3 initialAttachLocalPos;
     private Quaternion initialAttachLocalRot;
