@@ -6,8 +6,9 @@ using TMPro;
 public class HitPointsController : MonoBehaviour
 {
     private int currentHitPoints;
-    //public TextMeshProUGUI hitPointsUI;
     public TextMeshProUGUI hitObjectTextUI;
+
+    [SerializeField] private AudioSource audioSource;
 
     private void Start()
     {
@@ -16,6 +17,8 @@ public class HitPointsController : MonoBehaviour
         TriggerHitPoints.OnTouchedObstacle += IncreaseHitPoints;
         SceneCleanUp.OnTriggeredScene += ResetCurrentHitPoints;
         Timer.OnTimerEnded += EndGame;
+
+        audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     /// <summary>
@@ -46,7 +49,10 @@ public class HitPointsController : MonoBehaviour
     private void EndGame()
     {
         TriggerHitPoints.OnTouchedObstacle -= IncreaseHitPoints;
+        hitObjectTextUI.fontStyle = FontStyles.Bold;
+        hitObjectTextUI.color = Color.red;
         hitObjectTextUI.text = "Congratulations! You finished the level and got " + currentHitPoints.ToString() + " hitpoints! You can now put off your headset.";
+        audioSource.Play();
     }
 
     private IEnumerator DespawnObject(GameObject hitObject)
