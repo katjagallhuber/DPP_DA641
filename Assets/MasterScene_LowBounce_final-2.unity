@@ -1182,7 +1182,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
@@ -2668,8 +2668,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puppetConterollerLeft: {fileID: 70029397}
   puppetConterollerRight: {fileID: 314854367}
-  leftAngle: -45
-  rightAngle: 45
+  leftAngleZ: -60
+  rightAngleZ: 60
+  leftAngleY: -60
+  rightAngleY: 60
 --- !u!4 &155488695
 Transform:
   m_ObjectHideFlags: 0
@@ -4542,7 +4544,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
@@ -5268,7 +5270,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
@@ -26797,8 +26799,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puppetConterollerLeft: {fileID: 333951388}
   puppetConterollerRight: {fileID: 2038949837}
-  leftAngle: -45
-  rightAngle: 45
+  leftAngleZ: -60
+  rightAngleZ: 60
+  leftAngleY: -60
+  rightAngleY: 60
 --- !u!4 &1918086022
 Transform:
   m_ObjectHideFlags: 0
@@ -28186,7 +28190,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
